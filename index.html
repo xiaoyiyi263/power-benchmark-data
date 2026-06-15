@@ -482,7 +482,8 @@
         <tr><td>营业现金比率</td><td>EDF</td><td>29,125百万欧元 / 113,266百万欧元</td><td>约25.7%</td><td>按2025 Universal Registration Document经营活动现金流和营业收入测算。</td></tr>
         <tr><td>营业现金比率</td><td>华润电力</td><td>44,650,887千港元 / 102,009,878千港元</td><td>约43.8%</td><td>按华润电力2025年报经营活动现金流入净额和营业额测算。</td></tr>
         <tr><td>营业现金比率</td><td>Iberdrola</td><td>11,635百万欧元 / 44,076百万欧元</td><td>约26.4%</td><td>按Iberdrola 2025合并现金流量表经营活动现金流和营业收入测算。</td></tr>
-        <tr><td>仍不能计算</td><td>全员劳动生产率、海外收入占比、部分技术投入比率、奖项评分等</td><td>缺劳动生产总值、分地区收入、研发费用、奖项等级/归属等字段</td><td>不计算</td><td>这些指标不能只凭员工人数、总收入或新闻线索推算，必须补齐公式里的全部字段。</td></tr>
+        <tr><td>全员劳动生产率</td><td>Iberdrola</td><td>44,076百万欧元 / 45,400人</td><td>约97.1万欧元/人</td><td>按营业收入/员工人数测算；正式排名折算为万美元/人时需使用本报告统一汇率。</td></tr>
+        <tr><td>仍不能计算</td><td>部分全员劳动生产率、海外收入占比、部分技术投入比率、奖项评分等</td><td>缺营业收入/增加值、员工人数、分地区收入、研发费用、奖项等级/归属等字段</td><td>不计算</td><td>这些指标不能只凭单一字段或新闻线索推算，必须补齐公式里的全部字段。</td></tr>
       </tbody>
     </table>
 
@@ -1675,7 +1676,8 @@
         ["发电量", "约129太瓦时", "Iberdrola 2025 annual results/Integrated Report", "总发电量"],
         ["研发投入", "425.4百万欧元", "Iberdrola Integrated Report 2025", "R&D investment"],
         ["技术投入比率", "约0.97%", "Iberdrola 2025 Annual financial information / Integrated Report", "425.4/44,076测算"],
-        ["员工人数", "45,400人", "Iberdrola Integrated Report 2025", "Number of employees"]
+        ["员工人数", "45,400人", "<a href=\"https://www.iberdrola.com/shareholders-investors/operational-financial-information/annual-reports\" target=\"_blank\">Iberdrola Integrated Report 2025</a>", "Number of employees"],
+        ["全员劳动生产率", "约97.1万欧元/人（待统一汇率折算为万美元/人）", "<a href=\"https://www.iberdrola.com/documents/20125/5613162/gsm26-annual-accounts-consolidated-2025.pdf\" target=\"_blank\">Iberdrola 2025 Annual financial information (consolidated)</a>；<a href=\"https://www.iberdrola.com/shareholders-investors/operational-financial-information/annual-reports\" target=\"_blank\">Iberdrola Integrated Report 2025</a>", "44,076百万欧元营业收入 / 45,400人测算；员工数取Integrated Report 2025披露人数"]
       ],
       EDF: [
         ["营业收入", "113,266百万欧元", "EDF 2025 Management Report/Annual Results", "Sales"],
@@ -1815,7 +1817,7 @@
       { dim: "治理现代", name: "净资产收益率", category: "financial", fields: "净利润、期初/期末所有者权益、平均所有者权益。", formula: "净利润 / 平均所有者权益 × 100%。", aux: "年度报告利润表、资产负债表、财务指标摘要。" },
       { dim: "治理现代", name: "资产负债率", category: "financial", fields: "年末负债总额、资产总额。", formula: "负债总额 / 资产总额 × 100%；排序时通常按越低越优处理。", aux: "年度报告资产负债表、债券年度报告、评级报告。" },
       { dim: "治理现代", name: "营业现金比率", category: "financial", fields: "经营活动产生的现金流量净额、营业收入。", formula: "经营活动产生的现金流量净额 / 营业收入 × 100%。", aux: "年度报告现金流量表；注意国内外会计口径差异，必要时单列说明。" },
-      { dim: "治理现代", name: "全员劳动生产率", category: "financial", fields: "劳动生产总值或可替代价值量指标、年平均从业人员人数。", formula: "劳动生产总值 / 年平均从业人员人数 × 100%；报告单位为万美元/人。", aux: "年度报告员工人数、ESG员工章节；若劳动生产总值未披露，保留测算说明。" }
+      { dim: "治理现代", name: "全员劳动生产率", category: "financial", fields: "营业收入或增加值、员工人数（优先年平均从业人员，未披露时使用年末员工数并说明口径）。", formula: "营业收入或增加值 / 员工人数；报告单位为万美元/人，原币种先保留，出表时按统一汇率折算。", aux: "年度报告员工人数、ESG员工章节；若只披露收入和员工数，先计算原币种人均收入并标注折算待统一。" }
     ];
 
     function link(label, url) {
@@ -2147,7 +2149,7 @@
         "资产负债率": ["约60.6%", "<a href=\"https://www.iberdrola.com/documents/20125/5613162/gsm26-annual-accounts-consolidated-2025.pdf\" target=\"_blank\">Iberdrola 2025 Annual financial information (consolidated)</a>", "负债97,343百万欧元 / 资产160,762百万欧元测算。"],
         "营业现金比率": ["约26.4%", "<a href=\"https://www.iberdrola.com/documents/20125/5613162/gsm26-annual-accounts-consolidated-2025.pdf\" target=\"_blank\">Iberdrola 2025 Annual financial information (consolidated)</a>", "经营活动现金流11,635百万欧元 / 营业收入44,076百万欧元测算。"],
         "技术投入比率": ["约0.97%（425.4/44,076）", "Iberdrola 2025 Annual financial information / Integrated Report", "研发投入425.4百万欧元除以营业收入44,076百万欧元测算。"],
-        "全员劳动生产率": ["未发布", "Iberdrola Integrated Report 2025披露员工45,400人", "员工人数不是劳动生产率；缺劳动生产总值/增加值，不能计算。"]
+        "全员劳动生产率": ["约97.1万欧元/人（待统一汇率折算为万美元/人）", "<a href=\"https://www.iberdrola.com/documents/20125/5613162/gsm26-annual-accounts-consolidated-2025.pdf\" target=\"_blank\">Iberdrola 2025 Annual financial information (consolidated)</a>；<a href=\"https://www.iberdrola.com/shareholders-investors/operational-financial-information/annual-reports\" target=\"_blank\">Iberdrola Integrated Report 2025</a>", "44,076百万欧元营业收入 / 45,400人测算；员工数取Integrated Report 2025披露人数，正式出表时按统一汇率折算为万美元/人。"]
       },
       EDF: {
         "发电装机容量": ["126吉瓦", "EDF 2025 Annual Results", "集团装机。"],
@@ -2256,7 +2258,7 @@
         return { value: "待人工评分", source: "企业年报、ESG/可持续发展报告、官网科技创新新闻", note: "科技创新效能指数是报告评分项，不是年报原始数；需按创新保障35%、数智赋能15%、成果应用50%另行打分。" };
       }
       if (metric.name === "全员劳动生产率") {
-        return { value: "未披露，不能计算", source: item.source, note: "多数企业只披露员工人数；缺劳动生产总值/增加值或等价价值量指标，不能用员工人数替代。" };
+        return { value: "未披露，不能计算", source: item.source, note: "缺营业收入/增加值或员工人数任一字段时不能计算；若两项均披露，先按原币种测算并等待统一汇率折算。" };
       }
       if (metric.name === "技术投入比率") {
         return { value: "未披露/未形成可比口径", source: item.source, note: "未在已摘录材料中找到集团合并口径研发投入费用；不能用资本开支、技改投资或创新项目数替代研发投入。" };
