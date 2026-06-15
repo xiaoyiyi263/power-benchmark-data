@@ -169,6 +169,23 @@
       margin: 0;
       border: 0;
     }
+    .top-matrix table { min-width: 5200px; }
+    .top-matrix th:first-child,
+    .top-matrix td:first-child {
+      position: sticky;
+      left: 0;
+      z-index: 2;
+      background: #fff;
+      box-shadow: 1px 0 0 var(--line);
+    }
+    .top-matrix th:first-child {
+      z-index: 3;
+      background: #edf3f8;
+    }
+    .top-matrix td {
+      font-size: 13px;
+      line-height: 1.45;
+    }
     .matrix-cell {
       min-height: 66px;
       font-size: 13px;
@@ -211,6 +228,7 @@
   <main>
     <h2>快速入口</h2>
     <div class="grid">
+      <a class="pill" href="#official-2025-overview">总览：2025已取得数据矩阵</a>
       <a class="pill" href="#indicator-sources">一、指标体系与公式</a>
       <a class="pill" href="#company-sources">二、公司备用入口</a>
       <a class="pill" href="#workflow">三、今年取数工作流</a>
@@ -220,6 +238,11 @@
       <a class="pill" href="#formula-derived-2025">5.4 公式计算结果</a>
       <a class="pill" href="#public-site-automation">六、公开站与月度巡检</a>
     </div>
+
+    <h2 id="official-2025-overview">总览：2025已取得数据矩阵（18项指标 × 24家公司）</h2>
+    <p class="small">本表放在网页最前面，集中统计当前已经取得的2025官方数据。行是18项指标，列是24家公司；绿色为已取得，灰色为未取得/未披露/不能计算，灰色“不用取得”表示2024报告中该公司未覆盖该指标或不适用。</p>
+    <div id="official2025OverviewSummary" class="note"></div>
+    <div id="official2025OverviewMatrix"></div>
 
     <h2 id="indicator-sources">一、指标体系与口径公式</h2>
     <p class="small">第一部分只说明“要算什么、怎么算、统一什么口径”，不再承担具体取数入口。具体到公司、年份、报告链接的来源，以第四、五部分为准。</p>
@@ -2290,6 +2313,50 @@
       return { key: "obtained", label: "已取得", cls: "status-ok" };
     }
 
+    function renderOfficial2025OverviewMatrix() {
+      const box = document.getElementById("official2025OverviewMatrix");
+      const summary = document.getElementById("official2025OverviewSummary");
+      if (!box || !summary) return;
+      const metricByName = Object.fromEntries(metrics.map(metric => [metric.name, metric]));
+      const orderedMetrics = historical2024MetricOrder.map(metricName => metricByName[metricName]).filter(Boolean);
+      const allStatuses = [];
+      const header = `<tr>
+        <th style="width:190px">指标</th>
+        ${companies.map(c => `<th>${c.name}<br><span class="small">${c.type}</span></th>`).join("")}
+      </tr>`;
+      const rows = orderedMetrics.map(metric => {
+        const cells = companies.map(c => {
+          const item = official2025MetricValue(c, metric);
+          const status = official2025ValueStatus(c, metric, item);
+          allStatuses.push(status);
+          const value = status.key === "obtained" ? item.value : status.label.replace("2024未覆盖", "不用取得");
+          const source = item.source || "";
+          const note = item.note || "";
+          return `<td class="matrix-cell">
+            <span class="${status.cls}">${value}</span>
+            ${status.key === "obtained" ? `<span class="matrix-source">${source}</span>` : ""}
+            ${note ? `<span class="matrix-source">${note}</span>` : ""}
+          </td>`;
+        }).join("");
+        const metricStatuses = companies.map(c => official2025ValueStatus(c, metric, official2025MetricValue(c, metric)));
+        const expected = metricStatuses.filter(status => status.key !== "na").length;
+        const obtained = metricStatuses.filter(status => status.key === "obtained").length;
+        return `<tr>
+          <td><strong>${metric.name}</strong><br><span class="small">${metric.dim}</span><br><span class="small">已取得 ${obtained}/${expected}</span></td>
+          ${cells}
+        </tr>`;
+      }).join("");
+      const expectedTotal = allStatuses.filter(status => status.key !== "na").length;
+      const obtainedTotal = allStatuses.filter(status => status.key === "obtained").length;
+      const missingTotal = allStatuses.filter(status => status.key === "missing").length;
+      const naTotal = allStatuses.filter(status => status.key === "na").length;
+      summary.innerHTML = `当前统计：18项指标 × 24家公司，共432个格子；按2024口径应取得 ${expectedTotal} 项，2025已取得 ${obtainedTotal} 项，未取得 ${missingTotal} 项，2024未覆盖/不适用 ${naTotal} 项。`;
+      box.innerHTML = `<div class="wide-scroll top-matrix"><table>
+        <thead>${header}</thead>
+        <tbody>${rows}</tbody>
+      </table></div>`;
+    }
+
     function expected2025SourceStatus(c, metric) {
       if (!hadMetricIn2024(c, metric)) {
         return {
@@ -2509,6 +2576,7 @@
     }
 
     renderHistorical2024Sources();
+    renderOfficial2025OverviewMatrix();
     renderHistorical2024Matrix();
     renderExpected2025SourceMatrix();
     renderOfficial2025CompanyTable();
