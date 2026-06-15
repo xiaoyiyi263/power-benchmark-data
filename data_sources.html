@@ -1612,6 +1612,8 @@
         ["管理装机容量", "104,118兆瓦", "华润电力2025年报/业绩报告", "装机规模突破1亿千瓦"],
         ["权益并网装机容量", "89,647兆瓦", "华润电力2025年报/业绩报告", "需确认与报告“可控装机”口径是否一致"],
         ["可再生能源权益并网装机", "44,851兆瓦", "华润电力2025年报/业绩报告", "约占权益并网装机50%"],
+        ["发电量", "226,790 GWh（约2,267.90亿千瓦时）", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "集团合并电厂全年net generation volume"],
+        ["非化石能源发电量占比", "未披露，不能计算", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "只披露总发电量及风电、光伏发电量增速，未披露可再生/非化石发电量绝对值"],
         ["EBITDA测算线索", "422.77亿港元", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "按净利润16,506,111 + 所得税3,705,721 + 折旧摊销18,075,820 + 财务费用3,989,014千港元测算；若严格使用“偿付利息现金”口径仍需复核现金流附注"],
         ["员工人数", "21,858人", "华润电力2025可持续发展报告/年报", "用于劳动生产率分母线索"]
       ],
@@ -2081,8 +2083,11 @@
       },
       CRPower: {
         "发电装机容量": ["管理装机104,118兆瓦；权益并网装机89,647兆瓦", "华润电力2025年报/业绩报告", "需与报告要求的可控装机口径核对。"],
+        "发电量": ["226,790 GWh（约2,267.90亿千瓦时）", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "集团合并电厂全年併网/售电量，年报Management Discussion and Analysis披露total net generation volume of consolidated power plants。"],
         "非化石能源装机占比": ["50%（可再生能源权益并网装机占比）", "华润电力2025年报/业绩报告", "可再生能源权益并网装机44,851兆瓦。"],
+        "非化石能源发电量占比": ["未披露，不能计算", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "年报披露总发电量226,790 GWh及风电、光伏发电量增速，但未给出可再生/非化石发电量绝对值，不能用增速倒推正式占比。"],
         "营业收入": ["1,020.10亿港元", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "合并损益表披露营业额102,009,878千港元。"],
+        "资产总额": ["4,093.64亿港元", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "合并财务状况表总资产409,364,215千港元。"],
         "EBITDA": ["422.77亿港元（测算线索）", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "净利润+所得税+折旧摊销+财务费用测算；严格按报告公式“偿付利息现金”仍需复核现金流附注。"],
         "净资产收益率": ["约13.8%", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "14,518,950千港元股东应占利润 / 平均归母权益[(99,151,499+111,295,755)/2]千港元测算。"],
         "资产负债率": ["约67.4%", "<a href=\"https://www.crpower.com.hk/yjbg/2026-04-28/f2cb27a9-be81-4c25-b623-d0a438133743.pdf\" target=\"_blank\">华润电力2025年报PDF</a>", "总负债275,724,659千港元 / 总资产409,364,215千港元测算。"],
@@ -2227,14 +2232,32 @@
       if (!item || item.status === "unpublished" || item.status === "partial") {
         return { value: "未发布", source: item?.source || "未检索到集团/母公司2025全年官方披露。", note: "2024年有该指标；2025年集团层面官方数据未发布或未覆盖该指标。" };
       }
-      return { value: "官方报告已发布，暂未定位到本指标字段", source: item.source, note: "已取消笼统“待摘录”表述；未逐项填数的指标，需回到该公司年报/10-K/20-F核对是否披露集团口径字段。" };
+      if (metric.category === "rating") {
+        return { value: "待单独核验", source: `${publicLinks.sp}；${publicLinks.fitch}；${publicLinks.moodys}`, note: "国际信用评级不以企业年报发布为准，需逐家到评级机构官方页面核验长期主体/发行人评级、展望和日期。" };
+      }
+      if (metric.category === "innovation") {
+        return { value: "待人工评分", source: "企业年报、ESG/可持续发展报告、官网科技创新新闻", note: "科技创新效能指数是报告评分项，不是年报原始数；需按创新保障35%、数智赋能15%、成果应用50%另行打分。" };
+      }
+      if (metric.name === "全员劳动生产率") {
+        return { value: "未披露，不能计算", source: item.source, note: "多数企业只披露员工人数；缺劳动生产总值/增加值或等价价值量指标，不能用员工人数替代。" };
+      }
+      if (metric.name === "技术投入比率") {
+        return { value: "未披露/未形成可比口径", source: item.source, note: "未在已摘录材料中找到集团合并口径研发投入费用；不能用资本开支、技改投资或创新项目数替代研发投入。" };
+      }
+      if (metric.name === "海外装机容量" || metric.name === "海外收入占比") {
+        return { value: "未披露", source: item.source, note: "已发布材料未单列该指标所需的海外口径字段；不倒推、不用地区故事或项目新闻替代。" };
+      }
+      if (metric.category === "award") {
+        return { value: "待奖项名单核验", source: `${publicLinks.csee}；${publicLinks.cecAward}`, note: "行业获奖评分不直接来自企业年报，需到官方获奖名单核对完成单位、奖项等级并按评分规则汇总到集团层面。" };
+      }
+      return { value: "未逐项核定", source: item.source, note: "该公司全年官方报告已发布，但本指标仍需继续回到对应章节核页码；未核定前不作为已取得数据。" };
     }
 
     function official2025ValueStatus(c, metric, item) {
       if (!hadMetricIn2024(c, metric)) return { key: "na", label: "2024未覆盖", cls: "status-na" };
       const value = item.value || "";
-      if (!value || value.includes("未发布")) return { key: "missing", label: "未取得", cls: "status-na" };
-      if (value.includes("暂未定位") || value.includes("正文未读取") || value.includes("不能填数")) return { key: "missing", label: "未取得", cls: "status-warn" };
+      if (!value || value.includes("未发布") || value.includes("未披露") || value.includes("未直接披露") || value.includes("不能计算")) return { key: "missing", label: "未取得", cls: "status-na" };
+      if (value.includes("未逐项核定") || value.includes("待单独核验") || value.includes("待人工评分") || value.includes("待奖项名单核验") || value.includes("暂未定位") || value.includes("正文未读取") || value.includes("不能填数") || value.includes("文件获取失败")) return { key: "missing", label: "未取得", cls: "status-warn" };
       return { key: "obtained", label: "已取得", cls: "status-ok" };
     }
 
@@ -2252,9 +2275,17 @@
       const value = valueItem.value || "";
       const hasConcreteValue = value &&
         !value.includes("未发布") &&
+        !value.includes("未披露") &&
+        !value.includes("未直接披露") &&
+        !value.includes("未逐项核定") &&
+        !value.includes("待单独核验") &&
+        !value.includes("待人工评分") &&
+        !value.includes("待奖项名单核验") &&
         !value.includes("暂未定位") &&
         !value.includes("正文未读取") &&
         !value.includes("不能填数") &&
+        !value.includes("不能计算") &&
+        !value.includes("文件获取失败") &&
         !value.includes("2024未覆盖");
       if (hasConcreteValue) {
         return {
@@ -2264,10 +2295,26 @@
           detail: `已取得本指标2025官方值：${value}`
         };
       }
+      if (value.includes("未披露") || value.includes("未直接披露") || value.includes("不能计算") || value.includes("未发布")) {
+        return {
+          key: "unavailable",
+          label: "未披露/不能计算",
+          cls: "status-na",
+          detail: `${value}。${valueItem.note || "官方材料未覆盖该指标所需字段。"}`
+        };
+      }
+      if (value.includes("待单独核验") || value.includes("待人工评分") || value.includes("待奖项名单核验") || value.includes("未逐项核定")) {
+        return {
+          key: "needs_work",
+          label: "需单独核验",
+          cls: "status-warn",
+          detail: `${value}。${valueItem.note || "该项不能仅凭企业年报发布状态判断为已取得。"}`
+        };
+      }
       if (value.includes("正文未读取") || value.includes("不能填数")) {
         return {
           key: "published_not_read",
-          label: "源已发布未取数",
+          label: "官方文件无法读取",
           cls: "status-warn",
           detail: value
         };
