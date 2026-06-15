@@ -602,7 +602,6 @@
     };
 
     const publicLinks = {
-      cecReport: '<a href="https://chinapower.org.cn/detail/447983.html" target="_blank">中电联《中国电力行业年度发展报告》</a>',
       irena: '<a href="https://www.irena.org/Publications/2025/Jul/Renewable-energy-statistics-2025" target="_blank">IRENA Renewable energy statistics</a>',
       iea: '<a href="https://www.iea.org/reports/world-energy-outlook-2025" target="_blank">IEA World Energy Outlook</a>',
       sp: '<a href="https://www.spglobal.com/ratings/en" target="_blank">S&amp;P Global Ratings</a>',
@@ -646,7 +645,7 @@
     };
 
     const publicRefs2024 = {
-      industry: "[1] 中国电力企业联合会《中国电力行业年度发展报告2025》；[2] IRENA Renewable energy statistics 2025；[3] IEA World Energy Outlook 2025",
+      industry: "[2] IRENA Renewable energy statistics 2025；[3] IEA World Energy Outlook 2025",
       rating: "[38] 标准普尔官网；[39] 惠誉官网；[40] 穆迪官网",
       patent: "正文说明：华发七弦琴国家知识产权运营公共服务平台发布的“中国企业专利实力500强榜单”",
       award: "正文说明：中国电力科学技术奖（电力科学技术进步奖/电力技术发明奖）、中国电力企业联合会电力创新奖获奖名单",
@@ -1784,9 +1783,9 @@
     };
 
     const metrics = [
-      { dim: "产品卓越", name: "发电装机容量", category: "operation", fields: "可控装机容量、总装机、按电源类型装机。", formula: "集团控股/最大股东发电企业机组额定出力容量算术之和。", aux: `${publicLinks.cecReport}；${publicLinks.irena}用于行业/全球口径核验。` },
-      { dim: "产品卓越", name: "发电量", category: "operation", fields: "年度总发电量、按电源类型发电量。", formula: "企业所有装机产出电能算术之和。", aux: `${publicLinks.cecReport}用于国内行业核验；企业月度/季度运营公告辅助。` },
-      { dim: "产品卓越", name: "非化石能源装机占比", category: "operation", fields: "水电、风电、光伏、核电及其他非化石装机；总装机。", formula: "非化石能源装机 / 总装机容量 × 100%。", aux: `${publicLinks.irena}；${publicLinks.cecReport}用于行业平均水平对照。` },
+      { dim: "产品卓越", name: "发电装机容量", category: "operation", fields: "可控装机容量、总装机、按电源类型装机。", formula: "集团控股/最大股东发电企业机组额定出力容量算术之和。", aux: `${publicLinks.irena}用于全球口径核验；国内企业以集团官方披露和行业调查底表回溯，不再把本报告作为数据来源。` },
+      { dim: "产品卓越", name: "发电量", category: "operation", fields: "年度总发电量、按电源类型发电量。", formula: "企业所有装机产出电能算术之和。", aux: "企业集团年度报告、ESG/社会责任报告、月度/季度运营公告辅助核验；不把本报告作为数据来源。" },
+      { dim: "产品卓越", name: "非化石能源装机占比", category: "operation", fields: "水电、风电、光伏、核电及其他非化石装机；总装机。", formula: "非化石能源装机 / 总装机容量 × 100%。", aux: `${publicLinks.irena}用于全球行业口径对照；企业自身年报/ESG报告用于取数。` },
       { dim: "产品卓越", name: "非化石能源发电量占比", category: "operation", fields: "非化石能源发电量；总发电量。", formula: "非化石能源发电量 / 总发电量 × 100%。", aux: `${publicLinks.iea}；${publicLinks.irena}用于全球趋势和行业口径对照。`, status: c => sets.nonFossilGenWatch.has(c.id) ? ["warn", "上一年该项存在未披露/不可比情形，今年需优先查分电源发电量；若仍缺失，标注未披露。"] : ["ok", "逐项取数"] },
       { dim: "产品卓越", name: "海外装机容量", category: "operation", fields: "海外可控装机、参股装机、海外项目并购/投运变化。", formula: "海外可控装机 + 参股装机容量算术之和。", aux: "企业海外业务章节、资产清单、并购公告、项目投运新闻。", status: c => sets.overseasCapacity.has(c.id) ? ["ok", "上一年度纳入该指标，继续取海外装机。"] : ["warn", "上一年度未纳入或无可比披露；仍需查年报确认是否无海外装机/未披露。"] },
       { dim: "品牌卓著", name: "营业收入", category: "financial", fields: "合并营业收入、主营业务收入、其他业务收入、原币种。", formula: "主营业务收入 + 其他业务收入；统一折算为亿美元。", aux: `${publicLinks.sec}、${publicLinks.sse}、${publicLinks.cninfo}、${publicLinks.hkex}用于监管披露核验。` },
