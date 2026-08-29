@@ -1,0 +1,614 @@
+/* 发电企业对标分析数据平台 - 样式文件 */
+
+:root {
+  --primary: #1f5f8b;
+  --primary-light: #eef6fb;
+  --primary-dark: #154a6e;
+  --accent: #d4762a;
+  --accent-light: #fdf3e8;
+  --success: #2d8a4e;
+  --warning: #c48a1a;
+  --danger: #c0392b;
+  --text: #162033;
+  --text-muted: #5b6475;
+  --border: #d9dee8;
+  --bg-soft: #f5f7fb;
+  --bg-white: #ffffff;
+  --shadow: 0 2px 12px rgba(31, 95, 139, 0.08);
+  --shadow-hover: 0 4px 20px rgba(31, 95, 139, 0.15);
+  --radius: 10px;
+  --radius-sm: 6px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Microsoft YaHei", Arial, sans-serif;
+  color: var(--text);
+  background: var(--bg-white);
+  line-height: 1.65;
+  font-size: 15px;
+}
+
+/* 顶部导航 */
+.site-header {
+  background: linear-gradient(135deg, #e9f4fa, #f7fbfd);
+  border-bottom: 1px solid var(--border);
+  padding: 0;
+}
+
+.header-content {
+  padding: 28px 40px 16px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.site-title {
+  font-size: 26px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 4px;
+}
+
+.site-subtitle {
+  font-size: 14px;
+  color: var(--text-muted);
+}
+
+.main-nav {
+  display: flex;
+  gap: 0;
+  padding: 0 40px;
+  max-width: 1400px;
+  margin: 0 auto;
+  border-top: 1px solid rgba(31, 95, 139, 0.1);
+}
+
+.nav-link {
+  padding: 12px 20px;
+  color: var(--text-muted);
+  text-decoration: none;
+  font-weight: 500;
+  font-size: 14px;
+  border-bottom: 3px solid transparent;
+  transition: all 0.2s;
+}
+
+.nav-link:hover,
+.nav-link.active {
+  color: var(--primary);
+  border-bottom-color: var(--primary);
+  background: rgba(31, 95, 139, 0.04);
+}
+
+/* 主内容区 */
+.main-content {
+  max-width: 1400px;
+  margin: 0 auto;
+  padding: 0 40px 60px;
+}
+
+.section {
+  padding: 36px 0;
+  border-bottom: 1px solid var(--border);
+}
+
+.section:last-child {
+  border-bottom: none;
+}
+
+.section-title {
+  font-size: 22px;
+  font-weight: 700;
+  color: var(--primary-dark);
+  margin-bottom: 20px;
+  padding-left: 12px;
+  border-left: 4px solid var(--primary);
+}
+
+.subsection-title {
+  font-size: 17px;
+  font-weight: 600;
+  color: var(--text);
+  margin: 24px 0 12px;
+}
+
+/* 统计卡片 */
+.stats-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 16px;
+  margin-bottom: 24px;
+}
+
+.stat-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 20px;
+  text-align: center;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.stat-card:hover {
+  transform: translateY(-2px);
+  box-shadow: var(--shadow-hover);
+}
+
+.stat-value {
+  font-size: 36px;
+  font-weight: 700;
+  color: var(--primary);
+  line-height: 1.2;
+}
+
+.stat-label {
+  font-size: 14px;
+  color: var(--text-muted);
+  margin-top: 4px;
+}
+
+.stat-detail {
+  font-size: 12px;
+  color: var(--text-muted);
+  margin-top: 2px;
+  opacity: 0.8;
+}
+
+/* 完成度进度条 */
+.completeness-section {
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+
+.completeness-bars {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.completeness-item {
+  display: grid;
+  grid-template-columns: 80px 1fr 140px;
+  align-items: center;
+  gap: 12px;
+}
+
+.completeness-label {
+  font-weight: 600;
+  color: var(--text);
+  font-size: 14px;
+}
+
+.completeness-bar {
+  height: 20px;
+  background: var(--bg-white);
+  border-radius: 10px;
+  overflow: hidden;
+  border: 1px solid var(--border);
+}
+
+.completeness-fill {
+  height: 100%;
+  background: linear-gradient(90deg, var(--primary), var(--primary-dark));
+  border-radius: 10px;
+  transition: width 0.5s ease;
+}
+
+.completeness-value {
+  font-size: 13px;
+  color: var(--text-muted);
+  text-align: right;
+}
+
+/* 维度Tab */
+.dimension-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+}
+
+.dim-tab {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  background: var(--bg-white);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.dim-tab:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.dim-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* 指标选择器 */
+.indicator-selector {
+  display: flex;
+  align-items: center;
+  margin-bottom: 16px;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.indicator-selector label {
+  font-weight: 600;
+  font-size: 14px;
+  color: var(--text);
+}
+
+.indicator-selector select {
+  padding: 8px 12px;
+  border: 1px solid var(--border);
+  border-radius: var(--radius-sm);
+  font-size: 14px;
+  color: var(--text);
+  background: var(--bg-white);
+  cursor: pointer;
+  min-width: 180px;
+}
+
+.indicator-selector select:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(31, 95, 139, 0.1);
+}
+
+/* 图表容器 */
+.chart-container {
+  width: 100%;
+  height: 500px;
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 16px;
+  margin-bottom: 16px;
+}
+
+.chart-container.large {
+  height: 600px;
+}
+
+/* 指标说明 */
+.indicator-info {
+  background: var(--primary-light);
+  border-left: 4px solid var(--primary);
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+  padding: 16px 20px;
+}
+
+.indicator-info h4 {
+  font-size: 15px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 6px;
+}
+
+.indicator-info p {
+  font-size: 14px;
+  color: var(--text);
+  line-height: 1.7;
+}
+
+/* 企业筛选 */
+.company-filter {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.filter-btn {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  background: var(--bg-white);
+  border-radius: 20px;
+  cursor: pointer;
+  font-size: 13px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.filter-btn:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.filter-btn.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+.search-input {
+  margin-left: auto;
+  padding: 8px 14px;
+  border: 1px solid var(--border);
+  border-radius: 20px;
+  font-size: 13px;
+  width: 220px;
+  transition: all 0.2s;
+}
+
+.search-input:focus {
+  outline: none;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 3px rgba(31, 95, 139, 0.1);
+  width: 260px;
+}
+
+/* 企业卡片网格 */
+.company-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 16px;
+}
+
+.company-card {
+  background: var(--bg-white);
+  border: 1px solid var(--border);
+  border-radius: var(--radius);
+  padding: 18px;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: var(--shadow);
+}
+
+.company-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+  border-color: var(--primary);
+}
+
+.company-card.domestic {
+  border-top: 3px solid var(--primary);
+}
+
+.company-card.foreign {
+  border-top: 3px solid var(--accent);
+}
+
+.company-name {
+  font-size: 16px;
+  font-weight: 700;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+
+.company-type-tag {
+  display: inline-block;
+  padding: 2px 8px;
+  border-radius: 10px;
+  font-size: 11px;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.company-type-tag.domestic {
+  background: var(--primary-light);
+  color: var(--primary);
+}
+
+.company-type-tag.foreign {
+  background: var(--accent-light);
+  color: var(--accent);
+}
+
+.company-stats {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.company-stat {
+  text-align: center;
+  padding: 6px;
+  background: var(--bg-soft);
+  border-radius: var(--radius-sm);
+}
+
+.company-stat-value {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--primary);
+}
+
+.company-stat-label {
+  font-size: 11px;
+  color: var(--text-muted);
+}
+
+/* 对比Tab */
+.comparison-tabs {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 16px;
+}
+
+.comp-tab {
+  padding: 10px 20px;
+  border: 1px solid var(--border);
+  background: var(--bg-white);
+  border-radius: var(--radius-sm);
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--text-muted);
+  transition: all 0.2s;
+}
+
+.comp-tab:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+
+.comp-tab.active {
+  background: var(--primary);
+  color: white;
+  border-color: var(--primary);
+}
+
+/* 数据来源 */
+.sources-content {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 24px;
+}
+
+.source-category {
+  background: var(--bg-soft);
+  border-radius: var(--radius);
+  padding: 20px 24px;
+}
+
+.source-category h3 {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--primary-dark);
+  margin-bottom: 12px;
+  padding-bottom: 8px;
+  border-bottom: 2px solid var(--primary);
+}
+
+.source-category ul {
+  list-style: none;
+  padding: 0;
+}
+
+.source-category li {
+  font-size: 14px;
+  color: var(--text);
+  padding: 6px 0;
+  padding-left: 18px;
+  position: relative;
+  line-height: 1.6;
+}
+
+.source-category li::before {
+  content: "▸";
+  position: absolute;
+  left: 0;
+  color: var(--primary);
+  font-weight: bold;
+}
+
+.source-category strong {
+  color: var(--primary-dark);
+}
+
+/* 页脚 */
+.site-footer {
+  background: var(--bg-soft);
+  border-top: 1px solid var(--border);
+  padding: 20px 40px;
+  text-align: center;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+  .header-content {
+    padding: 20px;
+  }
+
+  .site-title {
+    font-size: 20px;
+  }
+
+  .main-nav {
+    padding: 0 20px;
+    overflow-x: auto;
+  }
+
+  .nav-link {
+    padding: 10px 14px;
+    font-size: 13px;
+    white-space: nowrap;
+  }
+
+  .main-content {
+    padding: 0 20px 40px;
+  }
+
+  .stats-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .stat-value {
+    font-size: 28px;
+  }
+
+  .completeness-item {
+    grid-template-columns: 60px 1fr;
+  }
+
+  .completeness-value {
+    grid-column: 1 / -1;
+    text-align: left;
+    font-size: 12px;
+  }
+
+  .company-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .search-input {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .chart-container {
+    height: 400px;
+  }
+
+  .chart-container.large {
+    height: 450px;
+  }
+
+  .sources-content {
+    grid-template-columns: 1fr;
+  }
+
+  .comparison-tabs {
+    overflow-x: auto;
+  }
+
+  .comp-tab {
+    white-space: nowrap;
+  }
+}
+
+@media (max-width: 480px) {
+  .stats-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .dimension-tabs {
+    gap: 6px;
+  }
+
+  .dim-tab {
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+}
