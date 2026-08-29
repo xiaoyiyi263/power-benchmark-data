@@ -1,0 +1,105 @@
+﻿<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>图表中心 - 发电企业对标分析数据平台</title>
+  <link rel="stylesheet" href="css/style.css">
+  <style>
+    .charts-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(500px, 1fr)); gap: 24px; margin-top: 24px; }
+    .chart-card { background: #fff; border-radius: 12px; padding: 20px; box-shadow: 0 2px 12px rgba(0,0,0,0.08); }
+    .chart-card h3 { margin: 0 0 16px 0; font-size: 16px; color: #1f5f8b; border-left: 4px solid #1f5f8b; padding-left: 12px; }
+    .chart-card img { width: 100%; height: auto; border-radius: 8px; }
+    .chart-meta { margin-top: 12px; font-size: 13px; color: #666; }
+    .back-link { display: inline-block; margin-bottom: 20px; color: #1f5f8b; text-decoration: none; font-weight: 500; }
+    .back-link:hover { text-decoration: underline; }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="header-content">
+      <h1 class="site-title">⚡ 发电企业对标分析数据平台</h1>
+      <p class="site-subtitle">24家国内外能源企业 · 18项核心指标 · 4大维度对标</p>
+    </div>
+    <nav class="main-nav">
+      <a href="index.html" class="nav-link">总览</a>
+      <a href="index.html#indicators" class="nav-link">指标体系</a>
+      <a href="index.html#companies" class="nav-link">企业入口</a>
+      <a href="index.html#comparison" class="nav-link">数据对比</a>
+      <a href="charts.html" class="nav-link active">图表中心</a>
+      <a href="data_sources.html" class="nav-link">数据来源</a>
+    </nav>
+  </header>
+
+  <main class="main-content">
+    <section class="section">
+      <a href="index.html" class="back-link">← 返回总览</a>
+      <h2 class="section-title">📊 图表中心</h2>
+      <p style="color: #666; margin-bottom: 8px;">基于2025年最新数据生成的12张对标分析图表，数据更新时间：2026年8月29日</p>
+      
+      <div class="charts-grid">
+        <div class="chart-card">
+          <h3>1. 发电装机容量对比</h3>
+          <img src="charts/01_installed_capacity_2025.png" alt="发电装机容量对比">
+          <div class="chart-meta">24家企业 · 单位：万千瓦</div>
+        </div>
+        <div class="chart-card">
+          <h3>2. 发电量对比</h3>
+          <img src="charts/02_power_generation_2025.png" alt="发电量对比">
+          <div class="chart-meta">13家企业 · 单位：亿千瓦时</div>
+        </div>
+        <div class="chart-card">
+          <h3>3. 非化石能源装机占比</h3>
+          <img src="charts/03_non_fossil_capacity_ratio_2025.png" alt="非化石能源装机占比">
+          <div class="chart-meta">18家企业 · 单位：%</div>
+        </div>
+        <div class="chart-card">
+          <h3>4. 非化石能源发电量占比</h3>
+          <img src="charts/04_non_fossil_generation_ratio_2025.png" alt="非化石能源发电量占比">
+          <div class="chart-meta">9家企业 · 单位：%</div>
+        </div>
+        <div class="chart-card">
+          <h3>5. 营业收入对比</h3>
+          <img src="charts/05_revenue_2025.png" alt="营业收入对比">
+          <div class="chart-meta">22家企业 · 单位：亿美元</div>
+        </div>
+        <div class="chart-card">
+          <h3>6. 资产总额对比</h3>
+          <img src="charts/06_total_assets_2025.png" alt="资产总额对比">
+          <div class="chart-meta">18家企业 · 单位：亿美元</div>
+        </div>
+        <div class="chart-card">
+          <h3>7. EBITDA对比</h3>
+          <img src="charts/07_ebitda_2025.png" alt="EBITDA对比">
+          <div class="chart-meta">11家企业 · 单位：亿美元</div>
+        </div>
+        <div class="chart-card">
+          <h3>8. 净资产收益率(ROE)对比</h3>
+          <img src="charts/08_roe_2025.png" alt="ROE对比">
+          <div class="chart-meta">15家企业 · 单位：%</div>
+        </div>
+        <div class="chart-card">
+          <h3>9. 资产负债率对比</h3>
+          <img src="charts/09_debt_ratio_2025.png" alt="资产负债率对比">
+          <div class="chart-meta">11家企业 · 单位：%</div>
+        </div>
+        <div class="chart-card">
+          <h3>10. 海外装机容量对比</h3>
+          <img src="charts/10_overseas_capacity_2025.png" alt="海外装机容量对比">
+          <div class="chart-meta">3家企业 · 单位：万千瓦</div>
+        </div>
+        <div class="chart-card">
+          <h3>11. 中外企业四维度均值雷达图</h3>
+          <img src="charts/11_radar_dimension_comparison.png" alt="维度雷达图">
+          <div class="chart-meta">产品卓越 · 品牌卓著 · 创新领先 · 治理现代</div>
+        </div>
+        <div class="chart-card">
+          <h3>12. 综合方阵散点图（规模×效益）</h3>
+          <img src="charts/12_scatter_scale_profit_matrix.png" alt="综合方阵散点图">
+          <div class="chart-meta">营业收入 × 净资产收益率</div>
+        </div>
+      </div>
+    </section>
+  </main>
+</body>
+</html>
