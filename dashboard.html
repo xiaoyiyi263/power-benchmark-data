@@ -255,21 +255,24 @@
         if (opt) opt.selected = true;
       });
       
-      // 初始化所有图表
-      updateRanking();
-      updateMatrix();
-      initBubbleChart();
-      initHeatmap('all');
-      initSlopeChart();
-      updateTrend();
-      updateComparison();
-      
+      // 先显示内容，确保容器有正确尺寸
       document.getElementById('statusMsg').style.display = 'none';
       document.getElementById('dashboardContent').style.display = 'block';
       
-      // 延迟重绘所有图表，确保容器尺寸正确
+      // 延迟初始化图表，确保DOM渲染完成
       setTimeout(function() {
-        Object.values(charts).forEach(c => { if (c && c.resize) c.resize(); });
+        updateRanking();
+        updateMatrix();
+        initBubbleChart();
+        initHeatmap('all');
+        initSlopeChart();
+        updateTrend();
+        updateComparison();
+        
+        // 再次延迟重绘，确保尺寸正确
+        setTimeout(function() {
+          Object.values(charts).forEach(c => { if (c && c.resize) c.resize(); });
+        }, 200);
       }, 100);
       
     } catch(e) {
