@@ -357,8 +357,8 @@
     charts.matrix.setOption({
       tooltip: {formatter: p => p.name+'<br/>'+INDICATOR_NAMES[xInd]+': '+p.value[0]+'<br/>'+INDICATOR_NAMES[yInd]+': '+p.value[1]},
       grid: {left:70, right:50, top:40, bottom:60},
-      xAxis: {name: INDICATOR_NAMES[xInd], nameLocation:'middle', nameGap:35},
-      yAxis: {name: INDICATOR_NAMES[yInd], nameLocation:'middle', nameGap:45},
+      xAxis: {name: INDICATOR_NAMES[xInd], nameLocation:'middle', nameGap:35, scale: true},
+      yAxis: {name: INDICATOR_NAMES[yInd], nameLocation:'middle', nameGap:45, min: 0, max: 65},
       series: [{type:'scatter', data:data, symbolSize:18,
         label:{show:true, formatter:'{b}', position:'right', fontSize:11},
         markLine:{silent:true, lineStyle:{type:'dashed', color:'#999'},
@@ -380,8 +380,8 @@
     charts.bubble.setOption({
       tooltip: {formatter: p => p.name+'<br/>装机: '+p.value[0]+'万千瓦<br/>ROE: '+p.value[1]+'%<br/>非化石占比: '+p.value[2]+'%'},
       grid: {left:70, right:50, top:40, bottom:60},
-      xAxis: {name:'装机(万千瓦)', nameLocation:'middle', nameGap:35},
-      yAxis: {name:'ROE(%)', nameLocation:'middle', nameGap:45},
+      xAxis: {name:'装机(万千瓦)', nameLocation:'middle', nameGap:35, scale: true},
+      yAxis: {name:'ROE(%)', nameLocation:'middle', nameGap:45, min: 0, max: 65},
       series: [{type:'scatter', data:data, symbolSize: d => Math.max(12, d[2]*0.9),
         label:{show:true, formatter:'{b}', position:'right', fontSize:11}}]
     });
