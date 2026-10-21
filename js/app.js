@@ -54,8 +54,13 @@ function initNavigation() {
   const navLinks = document.querySelectorAll('.nav-link');
   navLinks.forEach(link => {
     link.addEventListener('click', function(e) {
+      const href = this.getAttribute('href');
+      // 仅对页内锚点（#xxx）做平滑滚动；指向真实页面（charts/dashboard/data_sources 等）的链接不拦截，正常跳转
+      if (!href || href.charAt(0) !== '#') {
+        return;
+      }
       e.preventDefault();
-      const targetId = this.getAttribute('href').substring(1);
+      const targetId = href.substring(1);
       const targetSection = document.getElementById(targetId);
       if (targetSection) {
         targetSection.scrollIntoView({ behavior: 'smooth', block: 'start' });
